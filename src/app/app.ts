@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserData } from './services/user-data';
-import { UserLayout } from './services/common';
+import { UserLayout, languageLayout } from './services/common';
 
 @Component({
   selector: 'app-root',
@@ -17,20 +17,12 @@ export class App implements OnInit {
 
   currentLanguage: string = 'eng';
   currentUserData: string = '';
-  currentUserIdx: number = -1;  
+  currentUserIdx: number = -1;
   extraInfoStatus: boolean = false;
+  languageLayout: any = languageLayout;
   searchField: string = '';  
-  userDataLayout: any = {
-    extraInfoField: 'User information',
-    mainTitle: 'Users',
-    sortUsers: {
-      'all': 'All',
-      'active': 'Active',
-      'inactive': 'Inactive'
-    }
-  };
   users: UserLayout[] = [];
-  usersDataList: UserLayout[] = [];  
+  usersDataList: UserLayout[] = [];
 
   constructor(
     private userData: UserData
@@ -52,7 +44,7 @@ export class App implements OnInit {
   resetData(): void {
     this.currentUserIdx = -1;
     this.currentUserData = '';
-    this.extraInfoStatus = false;    
+    this.extraInfoStatus = false;
   }
 
   searchInUserList(): void {
@@ -61,17 +53,10 @@ export class App implements OnInit {
     this.users = this.usersDataList.filter((v: UserLayout) => v['name'].includes(this.searchField));
   }
 
-  swichLanguageSetting(evt: any): void {
-    const engSet: string[] = ['All', 'Active', 'Inactive'];
-    const rusSet: string[] = ['Все', 'Активные', 'Неактивные'];
-
+  swichLanguageSetting(evt: any): void {    
     evt = evt.target.value;
     this.resetData();
-
-    this.currentLanguage = evt == 'eng' ? 'eng' : 'rus';
-    this.userDataLayout.extraInfoField = evt == 'eng' ? 'User information' : 'Данные пользователя';
-    this.userDataLayout.mainTitle = evt == 'eng' ? 'Users' : 'Пользователи';
-    Object.keys(this.userDataLayout.sortUsers).map((v: string, i: number) => this.userDataLayout.sortUsers[v] = evt == 'eng' ? engSet[i] : rusSet[i]);
+    this.currentLanguage = evt == 'eng' ? 'eng' : 'rus';    
   }
 
   swichUserList(evt: string): void {

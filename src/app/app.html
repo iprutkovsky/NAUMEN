@@ -10,21 +10,21 @@
 </div>
 <div class="center-field">
   <fieldset class="main">
-    <legend class="main-title">{{userDataLayout.mainTitle}}</legend>
+    <legend class="main-title">{{languageLayout[currentLanguage].mainTitle}}</legend>
     <div class="sort-user">
       <div class="block-row">
         <input type="radio" id="all" name="user-sorting" (change)="swichUserList($event.target.id)" />
-        <label for="all">{{userDataLayout.sortUsers.all}}</label>
+        <label for="all">{{languageLayout[currentLanguage].userStatus.all}}</label>
       </div>
 
       <div class="block-row">
         <input type="radio" id="active" name="user-sorting" (change)="swichUserList($event.target.id)" checked />
-        <label for="active">{{userDataLayout.sortUsers.active}}</label>
+        <label for="active">{{languageLayout[currentLanguage].userStatus.active}}</label>
       </div>
 
       <div class="block-row">
         <input type="radio" id="inactive" name="user-sorting" (change)="swichUserList($event.target.id)" />
-        <label for="inactive">{{userDataLayout.sortUsers.inactive}}</label>
+        <label for="inactive">{{languageLayout[currentLanguage].userStatus.inactive}}</label>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
     </div>
     @if (extraInfoStatus) {
       <fieldset class="extra-info-field">
-        <legend class="extra-info-field-title">{{userDataLayout.extraInfoField}}</legend>
+        <legend class="extra-info-field-title">{{languageLayout[currentLanguage].extraInfoField}}</legend>
         <p>{{currentUserData}}</p>
       </fieldset>
     }
